@@ -4,11 +4,12 @@ set -e
 INSTALL_DIR="/opt/cursor-ai"
 TEMP_DIR="$HOME/.cache/cursor-ai"
 MANIFEST_URL="https://raw.githubusercontent.com/devmemory/test_cursor/main/assets/manifest.env"
+MANIFEST_PATH="$TEMP_DIR/manifest.env"
 DESKTOP_FILE="/usr/share/applications/cursor.desktop"
 
 echo "🚀 Installing Cursor AI..."
 
-# Check commands
+# Check required commands
 for cmd in curl sudo; do
   if ! command -v $cmd &>/dev/null; then
     echo "❌ Required command '$cmd' not found. Please install it before running this script."
@@ -16,10 +17,10 @@ for cmd in curl sudo; do
   fi
 done
 
-# Check if libfuse2 or libfuse2t64 is installed
+# Check libfuse2 or libfuse2t64 presence
 if ! dpkg -s libfuse2 >/dev/null 2>&1 && ! dpkg -s libfuse2t64 >/dev/null 2>&1; then
   echo "⚠️ Neither 'libfuse2' nor 'libfuse2t64' is installed."
-  echo "Please install one of them manually before continuing:"
+  echo "Please install one before continuing:"
   echo "  sudo apt update"
   echo "  sudo apt install libfuse2"
   echo "or"
@@ -30,10 +31,10 @@ fi
 echo "⚠️ Please ensure 'libfuse2' and 'curl' are installed manually before continuing."
 echo
 
-if [ ! -f "$MANIFEST_PATH" ]; then
-  echo "❌ Manifest file not found at $MANIFEST_PATH"
-  exit 1
-fi
+mkdir -p "$TEMP_DIR"
+
+echo "⬇️ Downloading manifest file..."
+curl -fsSL "$MANIFEST_URL" -o "$MANIFEST_PATH" || { echo "❌ Failed to download manifest file"; exit 1; }
 
 source "$MANIFEST_PATH"
 
@@ -42,9 +43,8 @@ if [ -z "$APPIMAGE_URL" ] || [ -z "$ICON_URL" ]; then
   exit 1
 fi
 
-echo "📂 Creating installation and temporary directories..."
+echo "📂 Creating installation directory..."
 sudo mkdir -p "$INSTALL_DIR"
-mkdir -p "$TEMP_DIR"
 
 echo "⬇️ Downloading Cursor AppImage from $APPIMAGE_URL ..."
 curl -L "$APPIMAGE_URL" -o "$TEMP_DIR/cursor.appimage" || { echo "❌ Failed to download Cursor AppImage"; exit 1; }
@@ -74,6 +74,7 @@ EOF
 
 sudo chmod +x "$DESKTOP_FILE"
 
+echo "🧹 Cleaning up temporary files..."
 rm -rf "$TEMP_DIR"
 
 echo "✅ Installation complete! You can now launch Cursor AI from the app menu."
