@@ -6,7 +6,7 @@ usage() {
   exit 1
 }
 
-SCRIPT_BASE_URL="https://raw.githubusercontent.com/devmemory/test_cursor/main/scripts"
+SCRIPT_BASE_URL="https://raw.githubusercontent.com/devmemory/cursor-ubuntu-installer/main/scripts"
 
 case "$1" in
   install)

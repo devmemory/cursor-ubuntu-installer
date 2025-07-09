@@ -22,10 +22,10 @@ sudo apt install libfuse2 curl
 ## How to use
 ### install
 ```
-curl -fsSL https://raw.githubusercontent.com/devmemory/cursor-ubuntu-sell/main/scripts/cursor.sh | sudo bash -s -- install
+curl -fsSL https://raw.githubusercontent.com/devmemory/cursor-ubuntu-installer/main/scripts/cursor.sh | sudo bash -s -- install
 ```
 
 ### uninstall
 ```
-curl -fsSL https://raw.githubusercontent.com/devmemory/cursor-ubuntu-sell/main/scripts/cursor.sh | sudo bash -s -- uninstall
+curl -fsSL https://raw.githubusercontent.com/devmemory/cursor-ubuntu-installer/main/scripts/cursor.sh | sudo bash -s -- uninstall
 ```
