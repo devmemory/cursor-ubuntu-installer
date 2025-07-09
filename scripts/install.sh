@@ -3,8 +3,7 @@ set -e
 
 INSTALL_DIR="/opt/cursor-ai"
 TEMP_DIR="$HOME/.cache/cursor-ai"
-MANIFEST_URL="https://raw.githubusercontent.com/devmemory/cursor-ubuntu-installer/main/assets/manifest.env"
-MANIFEST_PATH="$TEMP_DIR/manifest.env"
+ICON_URL="https://raw.githubusercontent.com/devmemory/cursor-ubuntu-installer/main/assets/cursor.png"
 DESKTOP_FILE="/usr/share/applications/cursor.desktop"
 
 echo "🚀 Installing Cursor AI..."
@@ -33,18 +32,11 @@ echo
 
 mkdir -p "$TEMP_DIR"
 
-echo "⬇️ Downloading manifest file..."
-curl -fsSL "$MANIFEST_URL" -o "$MANIFEST_PATH" || { echo "❌ Failed to download manifest file"; exit 1; }
-
-source "$MANIFEST_PATH"
-
-if [ -z "$APPIMAGE_URL" ] || [ -z "$ICON_URL" ]; then
-  echo "❌ APPIMAGE_URL or ICON_URL not set in manifest file"
-  exit 1
-fi
-
 echo "📂 Creating installation directory..."
 sudo mkdir -p "$INSTALL_DIR"
+
+VERSION_HISTORY="https://raw.githubusercontent.com/oslook/cursor-ai-downloads/main/version-history.json"
+APPIMAGE_URL=$(curl -s "$VERSION_HISTORY" | jq -r '.versions[0].platforms["linux-x64"]')
 
 echo "⬇️ Downloading Cursor AppImage from $APPIMAGE_URL ..."
 curl -L "$APPIMAGE_URL" -o "$TEMP_DIR/cursor.appimage" || { echo "❌ Failed to download Cursor AppImage"; exit 1; }
