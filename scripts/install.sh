@@ -3,7 +3,7 @@ set -e
 
 INSTALL_DIR="/opt/cursor-ai"
 TEMP_DIR="$HOME/.cache/cursor-ai"
-MANIFEST_PATH="$(dirname "$0")/../assets/manifest.env"
+MANIFEST_URL="https://raw.githubusercontent.com/devmemory/test_cursor/main/assets/manifest.env"
 DESKTOP_FILE="/usr/share/applications/cursor.desktop"
 
 echo "🚀 Installing Cursor AI..."

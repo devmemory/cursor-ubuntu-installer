@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
 
-SCRIPT_DIR="$(dirname "$0")"
-
 usage() {
   echo "Usage: $0 {install|uninstall}"
   exit 1
 }
 
+SCRIPT_BASE_URL="https://raw.githubusercontent.com/devmemory/test_cursor/main/scripts"
+
 case "$1" in
   install)
-    bash "$SCRIPT_DIR/install.sh"
+    curl -fsSL "$SCRIPT_BASE_URL/install.sh" | sudo bash
     ;;
   uninstall)
-    bash "$SCRIPT_DIR/uninstall.sh"
+    curl -fsSL "$SCRIPT_BASE_URL/uninstall.sh" | sudo bash
     ;;
   *)
     usage
