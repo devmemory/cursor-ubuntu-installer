@@ -3,7 +3,7 @@ set -e
 
 INSTALL_DIR="/opt/cursor-ai"
 TEMP_DIR="$HOME/.cache/cursor-ai"
-MANIFEST_URL="https://raw.githubusercontent.com/devmemory/test_cursor/main/assets/manifest.env"
+MANIFEST_URL="https://raw.githubusercontent.com/devmemory/cursor-ubuntu-sell/main/assets/manifest.env"
 MANIFEST_PATH="$TEMP_DIR/manifest.env"
 DESKTOP_FILE="/usr/share/applications/cursor.desktop"
 
