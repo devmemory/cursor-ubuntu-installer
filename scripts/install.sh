@@ -16,6 +16,17 @@ for cmd in curl sudo; do
   fi
 done
 
+# Check if libfuse2 or libfuse2t64 is installed
+if ! dpkg -s libfuse2 >/dev/null 2>&1 && ! dpkg -s libfuse2t64 >/dev/null 2>&1; then
+  echo "⚠️ Neither 'libfuse2' nor 'libfuse2t64' is installed."
+  echo "Please install one of them manually before continuing:"
+  echo "  sudo apt update"
+  echo "  sudo apt install libfuse2"
+  echo "or"
+  echo "  sudo apt install libfuse2t64"
+  echo
+fi
+
 echo "⚠️ Please ensure 'libfuse2' and 'curl' are installed manually before continuing."
 echo
 
