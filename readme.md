@@ -29,3 +29,7 @@ curl -fsSL https://raw.githubusercontent.com/devmemory/cursor-ubuntu-installer/m
 ```
 curl -fsSL https://raw.githubusercontent.com/devmemory/cursor-ubuntu-installer/main/scripts/cursor.sh | sudo bash -s -- uninstall
 ```
+
+
+## Data Source and License
+The version information JSON used in this project is sourced from https://github.com/oslook/cursor-ai-downloads/tree/main repository, which is licensed under the MIT License.
