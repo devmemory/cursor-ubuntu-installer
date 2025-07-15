@@ -1,10 +1,26 @@
-# Cursor AI Ubuntu Installer
-This repository contains scripts to install and uninstall Cursor AI on Ubuntu.
+## 🔧 What This Project Does
+
+This shell script automates the installation of the Cursor AI code editor on Ubuntu. Here's what it does step by step:
+
+1. **Fetch the Latest Version**  
+   Retrieves the latest Cursor AI version and download URL from a public JSON file.
+
+2. **Download Files**  
+   Downloads the Cursor AppImage and icon into a temporary directory.
+
+3. **Install to System Directory**  
+   Moves the AppImage and icon to `/opt/cursor-ai` for centralized access.
+
+4. **Set Permissions**  
+   Applies the appropriate permissions to ensure the app runs smoothly and securely.
+
+5. **Create Desktop Shortcut**  
+   Generates a `.desktop` launcher file so Cursor AI appears in your app menu like a native app.
+
 
 ## Structure
 
 - `assets/`
-  - `manifest.env`: URLs for AppImage and icon (editable)
   - `cursor.png`: Icon file
 - `scripts/`
   - `install.sh`: Install script
